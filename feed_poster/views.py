@@ -12,6 +12,7 @@ def index(request):
     return render(request, 'feed_poster/index.html') 
 
 def feed_get(request):
+    is_std_default_equal_encoding = 1
     url_name = request.POST['url_name']
     site_title = get_site_title_from_rss_source(url_name)
     my_result = get_all_article_from_rss_source(url_name)
