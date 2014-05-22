@@ -1,0 +1,19 @@
+<h1>{{ site_title }}</h1>
+
+{% csrf_token %}
+{% for feed in feeds_result %}
+<hr>
+Title:  {{ feed.title }}
+
+ {% if not feed.content %}
+ <br>No content in this feed</br>
+ {% else %}
+	<textarea rows="5" cols="500">
+		{{feed.content}}
+	</textarea>
+ {% endif %}
+{{feed.content}}
+{% endfor %}
+<br>
+<a href="./">Home</a>
+</br>

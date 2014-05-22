@@ -7,5 +7,4 @@ from django.core.urlresolvers import reverse
 
 # Create your views here.
 def index(request):
-    #return HttpResponse('test1')
     return render(request, 'mysite/index.html') 
