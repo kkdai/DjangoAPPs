@@ -91,8 +91,9 @@ def get_site_title_from_rss_source(rss_source):
 
 def transfer_html_to_bbcode(html_data):
     parser_html = parser.HTML2BBCode()
-    return display_encode(str(parser_html.feed(html_data)))
-
+    #return display_encode(str(parser_html.feed(html_data)))
+    return str(parser_html.feed(html_data))
+    
 if __name__ == "__main__":
     is_std_default_equal_encoding = 1
     rss_url1 = "http://www.evanlin.com/blog/?feed=rss2"

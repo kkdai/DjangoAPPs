@@ -23,8 +23,9 @@ def feed_get(request):
     feed_return = []
     bbcode_contents = []
     for item in my_result:
-        print item.content
-        item.content = transfer_html_to_bbcode(item.content)
+        #print item.content
+        if item.content:
+            item.content = transfer_html_to_bbcode(item.content)
 
     #print transfer_html_to_bbcode(my_result[1][0])
     context = {'site_title': site_title, 'feeds_result': my_result}
