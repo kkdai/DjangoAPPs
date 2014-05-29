@@ -5,6 +5,13 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
+try:
+    from pyquery import PyQuery as pq
+except ImportError:
+    print "pip install pyquery"
+    sys.exit(1)
+
+
 '''
 Force decode for string codec for input string (file or web)
 '''
@@ -68,9 +75,10 @@ def get_latest_article_from_rss_source(rss_source):
         return (rss_titles, rss_descriptions)
 
 class feeds_content(object):
-  def __init__(self, y0, y1):
+  def __init__(self, y0, y1, y2):
      self.title = y0
      self.content = y1
+     self.link = y2
 
 def get_all_article_from_rss_source(rss_source):
     feed = feedparser.parse(rss_source)
@@ -78,10 +86,10 @@ def get_all_article_from_rss_source(rss_source):
     rss_descriptions = []
     if not feed:
         print "no result"
-        return feeds_content(0, 0)
+        return feeds_content(0, 0, 0)
     else:
         for feed_item in feed["items"]:
-            feed_class = feeds_content(feed_item["title"], feed_item["description"])
+            feed_class = feeds_content(feed_item["title"], feed_item["description"], feed_item["link"])
             return_values.append(feed_class)
         return return_values
 
@@ -105,7 +113,7 @@ if __name__ == "__main__":
     print 'default encoding =', sys.getdefaultencoding()
     print "-------------------------------------------------"
     print "Parsing rss data ....."
-    my_result = get_all_article_from_rss_source(rss_url4)
+    my_result = get_all_article_from_rss_source(rss_url2)
     #print 'tota; have ', len(my_result[0]), 'feeds'
     #for each in my_result[0]:
     #print my_result[0][0].encode('utf-8')
@@ -115,6 +123,18 @@ if __name__ == "__main__":
     #    print item
     for item in my_result:
         #print item.title
-        print transfer_html_to_bbcode(item.content)
-        print '----------------------------'        
+        #print transfer_html_to_bbcode(item.content)
+        print item.link
+        print 'request from link'
+        d=pq(url=item.link)
+        #print d.html()
+        print '----------------------------'
+        #print d('body')
+        print d('body').hasClass('t_msgfont') #find specific class in whole body
+        #print d('body').find('table').html() #find first table and pass back it's value
+        for each_table in d('body').find('table'):
+            print each_table #find first table and pass back it's value
+            print '########'
+        print '----------------------------'
+        break        
     #print transfer_html_to_bbcode(my_result[1][0])
