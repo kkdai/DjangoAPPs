@@ -130,11 +130,8 @@ if __name__ == "__main__":
         #print d.html()
         print '----------------------------'
         #print d('body')
-        print d('body').hasClass('t_msgfont') #find specific class in whole body
-        #print d('body').find('table').html() #find first table and pass back it's value
-        for each_table in d('body').find('table'):
-            print each_table #find first table and pass back it's value
-            print '########'
+        print d('body').hasClass('t_msgfont') #find specific class in whole body, but cannot target it.
+        print d('body').find('table').eq(1).html() #find first table and pass back it's value, eq could find specific one.
         print '----------------------------'
         break        
     #print transfer_html_to_bbcode(my_result[1][0])
