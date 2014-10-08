@@ -36,8 +36,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'qrcode',
     'polls',
-    'feed_poster'
+    'feed_poster',
+    'cam_qrcode'
 )
 
 MIDDLEWARE_CLASSES = (
