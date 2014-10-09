@@ -1,0 +1,15 @@
+{% if latest_cam_list %}
+    <ul>
+    {% for cam in latest_cam_list %}
+        <li><a href="aa">{{ cam.camera_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No cam are available.</p>
+{% endif %}
+
+<a href="add">Add One? </a>
+
+<br>
+<a href="/">Home</a>
+</br>

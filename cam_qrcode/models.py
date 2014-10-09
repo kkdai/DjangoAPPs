@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Camera(models.Model):
-    camera_id = models.CharField(max_length=200)
+    camera_id = models.IntegerField()
     camera_name = models.CharField(max_length=200)
     camera_xmpp_account = models.CharField(max_length=200)
     camera_xmpp_password = models.CharField(max_length=200)
