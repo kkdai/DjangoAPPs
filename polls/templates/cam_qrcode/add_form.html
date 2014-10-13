@@ -1,11 +1,11 @@
-<form method="post" action="add_cam">
-	<input type="text" name="cam_name">
-	<input type="text" name="xmpp_account">
-	<input type="text" name="xmpp_password">
+<form method="post" action="/cam_qrcode/add_cam/">
+	{% csrf_token %}
+	<p>Cam_Name<input type="text" name="cam_name"></p>
+	<p>Cam XMPP Account<input type="text" name="xmpp_account"></p>
+	<p>Cam password<input type="password" name="xmpp_password"></p>
 	<input type="submit" name="submit" value="Submit" />	
 </form>
 
 <br>
-<a href="{%url 'cam_qrcode:index' %}">Home</a>
-</br>
-		
+<a href="/">Home</a>
+</br>		
