@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'qrcode',
     'polls',
     'feed_poster',
-    'cam_qrcode'
+    'cam_qrcode',
+    'qrcode'
 )
 
 MIDDLEWARE_CLASSES = (
