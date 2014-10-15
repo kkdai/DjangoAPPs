@@ -7,6 +7,8 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     # ex: /cam_qrcode/5/
     url(r'^(?P<cam_id>\d+)/$', views.detail, name='detail'),
+    # ex: /cam_qrcode/5/json
+    url(r'^(?P<cam_id>\d+)/json/$', views.json, name='json'),
     # ex: /cam_qrcode/add/
     url(r'^add/$', views.add, name='add'),
     # ex: /cam_qrcode/add_cam/

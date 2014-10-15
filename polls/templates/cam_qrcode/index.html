@@ -1,7 +1,9 @@
 {% if latest_cam_list %}
     <ul>
     {% for cam in latest_cam_list %}
-        <li><a href="{% url 'detail' cam.camera_id %}">{{ cam.camera_name }}</a></li>
+        <li><a href="{% url 'detail' cam.camera_id %}">{{ cam.camera_name }}</a> | 
+        	<a href="{% url 'json' cam.camera_id %}"> JSON Data
+        </li>
     {% endfor %}
     </ul>
 {% else %}
@@ -11,5 +13,5 @@
 <a href="add">Add One? </a>
 
 <br>
-<a href="/">Home</a>
+<a href="/cam_qrcode">Home</a>
 </br>

@@ -1,7 +1,9 @@
 {% load qr_tags %}
 
-{% qr_from_text "http://localhost:8000/cam_qrcode/3/" %}
+Web JSON Address: {{full_url}} <br>
+
+{% qr_from_text "{{full_url}}" %}
 
 <br>
-<a href="/">Home</a>
+<a href="/cam_qrcode">Home</a>
 </br>
