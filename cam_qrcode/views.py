@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 import simplejson as json2
 
 # Create your views here.
-main_url = "http://localhost:8000/cam_qrcode/"
+main_url = "http://evan-web-apis.herokuapp.com/cam_qrcode/"
 
 def index(request):
     print "enter index"
@@ -29,7 +29,15 @@ def detail(request, cam_id):
     global main_url
     json_url = main_url + str(cam_id)+ "/json"
     print json_url
-    context = {'cam_url_id': cam_id, "full_url": json_url}
+
+    cam = get_object_or_404(Camera, pk=cam_id)
+    response_data = {}
+    response_data['cam_id'] =  cam.camera_id
+    response_data['camera_name'] = cam.camera_name
+    response_data['camera_xmpp_account'] = cam.camera_xmpp_account
+    response_data['camera_xmpp_password'] = cam.camera_xmpp_password
+
+    context = {'cam_url_id': cam_id, "full_url": json_url, "camera_name":cam.camera_name, "camera_xmpp_account":cam.camera_xmpp_account, "camera_xmpp_password": cam.camera_xmpp_password}
     return render(request, 'cam_qrcode/detail.html', context) 
 
 def add(request):
