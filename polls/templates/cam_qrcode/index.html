@@ -1,15 +1,26 @@
 {% if latest_cam_list %}
-    <ul>
+<table>
+  <thead>
+    <tr>
+      <th>Camera_Name</th>
+      <th>Remove</th>
+      <th>Json</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for cam in latest_cam_list %}
-        <li><a href="{% url 'detail' cam.camera_id %}">{{ cam.camera_name }}</a> | 
-        	<a href="{% url 'json' cam.camera_id %}"> JSON Data
-        </li>
+    <tr>
+      <td><strong><a href="{% url 'detail' cam.camera_id %}">{{ cam.camera_name }}</a></strong></td>
+      <td><a href="{% url 'remove' cam.camera_id %}">Remove</td>
+      <td><a href="{% url 'json' cam.camera_id %}"> JSON Data </a></td>
+    </tr>
     {% endfor %}
-    </ul>
+  </tbody>
+</table>
 {% else %}
     <p>No cam are available.</p>
 {% endif %}
-
+<br><br><br>
 <a href="add">Add One? </a>
 
 <br>
