@@ -18,6 +18,8 @@ def json(request, cam_id):
     response_data['camera_name'] = cam.camera_name
     response_data['camera_xmpp_account'] = cam.camera_xmpp_account
     response_data['camera_xmpp_password'] = cam.camera_xmpp_password
+    response_data['app_xmpp_account'] = cam.app_xmpp_account
+    response_data['app_xmpp_password'] = cam.app_xmpp_password
     out_obj = json2.dumps(response_data)
     return HttpResponse(out_obj, content_type="application/json")
 
@@ -26,7 +28,7 @@ def detail(request, cam_id):
     json_url = main_url + str(cam_id)+ "/json"
     
     cam = get_object_or_404(Camera, pk=cam_id)
-    context = {'cam_url_id': cam_id, "full_url": json_url, "camera_name":cam.camera_name, "camera_xmpp_account":cam.camera_xmpp_account, "camera_xmpp_password": cam.camera_xmpp_password}
+    context = {'cam_url_id': cam_id, "full_url": json_url, "camera_name":cam.camera_name, "camera_xmpp_account":cam.camera_xmpp_account, "camera_xmpp_password": cam.camera_xmpp_password, "app_xmpp_account": cam.app_xmpp_account, "app_xmpp_password": cam.app_xmpp_password}
     return render(request, 'cam_qrcode/detail.html', context) 
 
 def remove(request, cam_id):
@@ -41,7 +43,9 @@ def add_cam(request):
     cam_name = request.POST['cam_name']
     xmpp_acc = request.POST['xmpp_account']
     xmpp_pw = request.POST['xmpp_password']
+    app_acc = request.POST['app_xmpp_account']
+    app_pw = request.POST['app_xmpp_password']
     cam_new_id = Camera.objects.all().count() + 1
-    add_obj = Camera(camera_id=cam_new_id, camera_name=cam_name, camera_xmpp_account=xmpp_acc, camera_xmpp_password=xmpp_pw)
+    add_obj = Camera(camera_id=cam_new_id, camera_name=cam_name, camera_xmpp_account=xmpp_acc, camera_xmpp_password=xmpp_pw, app_xmpp_account=app_acc, app_xmpp_password=app_pw)
     add_obj.save()
     return HttpResponse('Add done <br><a href="/cam_qrcode">Home</a></br>')

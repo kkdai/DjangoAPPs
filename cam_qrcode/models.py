@@ -7,6 +7,8 @@ class Camera(models.Model):
     camera_name = models.CharField(max_length=200)
     camera_xmpp_account = models.CharField(max_length=200)
     camera_xmpp_password = models.CharField(max_length=200)
+    app_xmpp_account = models.CharField(max_length=200)
+    app_xmpp_password = models.CharField(max_length=200)
  
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
